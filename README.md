@@ -6,3 +6,10 @@ See also [repository on github)[https://github.com/gsuitedevs/python-samples/tre
 ## Step 2: Install the Google Client Library
 
 
+```
+  conda install -c conda-forge google-api-python-client
+```
+
+## Documentation
+
+* [Google Sheet API](https://developers.google.com/sheets/api/reference/rest/)

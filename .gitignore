@@ -105,3 +105,4 @@ venv.bak/
 quickstart/credentials.json
 quickstart/sheetid.py
 quickstart/token.json
+doc/spreadsheet.json
