@@ -17,6 +17,7 @@ from __future__ import print_function
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
+import sheetid
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -37,9 +38,12 @@ def main():
     service = build('sheets', 'v4', http=creds.authorize(Http()))
 
     # Call the Sheets API
-    SPREADSHEET_ID = '1XZERn0Wz63lxaL7-OkcuGxgpWeyU_8oaUi91cgHuoYw'
+    # SPREADSHEET_ID is defined in sheetid.py as
+    # SPREADSHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
+    # not commited to git
+    
     RANGE_NAME = 'Answers!A1:B'
-    result = service.spreadsheets().values().get(spreadsheetId=SPREADSHEET_ID,
+    result = service.spreadsheets().values().get(spreadsheetId=sheetid.SPREADSHEET_ID,
                                                 range=RANGE_NAME).execute()
     values = result.get('values', [])
 
