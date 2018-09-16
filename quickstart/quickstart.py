@@ -26,6 +26,7 @@ SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 SAMPLE_SPREADSHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
 SAMPLE_RANGE_NAME = 'Class Data!A2:E'
 
+
 def main():
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
@@ -41,10 +42,10 @@ def main():
     # SPREADSHEET_ID is defined in sheetid.py as
     # SPREADSHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
     # not commited to git
-    
+
     RANGE_NAME = 'Answers!A1:B'
-    result = service.spreadsheets().values().get(spreadsheetId=sheetid.SPREADSHEET_ID,
-                                                range=RANGE_NAME).execute()
+    result = service.spreadsheets().values().get(
+        spreadsheetId=sheetid.SPREADSHEET_ID, range=RANGE_NAME).execute()
     values = result.get('values', [])
 
     if not values:
@@ -52,8 +53,9 @@ def main():
     else:
         # print('Name, Major:')
         for row in values:
-            # Print columns A and E, which correspond to indices 0 and 4.
+            # Print columns A and B, which correspond to indices 0 and 1.
             print('%s, %s' % (row[0], row[1]))
+
 
 if __name__ == '__main__':
     main()
