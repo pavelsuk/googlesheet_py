@@ -2,7 +2,7 @@
     "python.unitTest.unittestArgs": [
         "-v",
         "-s",
-        "./quickstart",
+        "./quickstart/",
         "-p",
         "test_*.py"
     ],

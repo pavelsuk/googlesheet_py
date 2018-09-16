@@ -106,3 +106,5 @@ quickstart/credentials.json
 quickstart/sheetid.py
 quickstart/token.json
 doc/spreadsheet.json
+quickstart/config/credentials.json
+quickstart/config/token.json
