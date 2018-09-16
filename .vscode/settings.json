@@ -1,0 +1,29 @@
+{
+    "python.unitTest.unittestArgs": [
+        "-v",
+        "-s",
+        "./quickstart",
+        "-p",
+        "test_*.py"
+    ],
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.cwd": "",
+    "python.unitTest.pyTestArgs": [
+        "."
+    ],
+    "python.unitTest.nosetestArgs": [
+        "abuseipdb"
+    ],
+    "python.formatting.provider": "yapf",
+    "python.pythonPath": "C:\\dev\\Anaconda3\\envs\\py36\\python.exe",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "terminal.integrated.shellArgs.windows": [
+        "/K",
+        "C:/dev/Anaconda3/Scripts/activate.bat",
+        "C:/dev/Anaconda3/envs/py36"
+    ]
+}
