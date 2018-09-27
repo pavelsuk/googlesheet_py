@@ -16,4 +16,4 @@ See also [repository on github](https://github.com/gsuitedevs/python-samples/tre
 
 ## Documentation
 
-* [Google Sheet API](https://developers.google.com/sheets/api/reference/rest/)
+- [Google Sheet API](https://developers.google.com/sheets/api/reference/rest/)

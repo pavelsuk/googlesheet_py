@@ -36,10 +36,9 @@ class DbGGlSheet(object):
         store = file.Storage(current_dir.joinpath('config/token.json'))
         creds = store.get()
         if not creds or creds.invalid:
-            flow = client.flow_from_clientsecrets(
-                current_dir.joinpath('config/credentials.json'), SCOPES)
+            flow = client.flow_from_clientsecrets(current_dir.joinpath('config/credentials.json'), SCOPES)
             creds = tools.run_flow(flow, store)
-        self.service = build('sheets', 'v4', http=creds.authorize(Http()))
+        self.service = build('sheets', 'v4', http=creds.authorize(Http()), cache_discovery=False)
 
     def create(self, title):
         """Create new sheet with title
@@ -53,16 +52,15 @@ class DbGGlSheet(object):
         service = self.service
         # [START sheets_create]
         spreadsheet = {'properties': {'title': title}}
-        spreadsheet = service.spreadsheets().create(
-            body=spreadsheet, fields='spreadsheetId').execute()
-        self.logger.debug('Spreadsheet ID: {0}'.format(
-            spreadsheet.get('spreadsheetId')))
+        spreadsheet = service.spreadsheets().create(body=spreadsheet, fields='spreadsheetId').execute()
+        self.logger.debug('Spreadsheet ID: {0}'.format(spreadsheet.get('spreadsheetId')))
         # [END sheets_create]
         return spreadsheet.get('spreadsheetId')
 
-    def append_values(self, spreadsheet_id, range_name, value_input_option,
-                      _values):
+    def append_values(self, spreadsheet_id, range_name, value_input_option, _values):
         service = self.service
+        self.logger.debug('DbGGlSheet.append_values SpreadsheetID: {}, RangeName: {}'.format(
+            spreadsheet_id, range_name))
         # [START sheets_append_values]
         values = [
             [
@@ -75,20 +73,12 @@ class DbGGlSheet(object):
         # [END_EXCLUDE]
         body = {'values': values}
         result = service.spreadsheets().values().append(
-            spreadsheetId=spreadsheet_id,
-            range=range_name,
-            valueInputOption=value_input_option,
-            body=body).execute()
-        print('{0} cells appended.'.format(
-            result.get('updates').get('updatedCells')))
+            spreadsheetId=spreadsheet_id, range=range_name, valueInputOption=value_input_option, body=body).execute()
+        print('{0} cells appended.'.format(result.get('updates').get('updatedCells')))
         # [END sheets_append_values]
         return result
 
-    def process_events(self,
-                       ev_list: List,
-                       ev_src: str,
-                       ev_type: str = None,
-                       ev_info: str = None) -> int:
+    def process_events(self, ev_list: List, ev_src: str, ev_type: str = None, ev_info: str = None) -> int:
         """
         Processes event list:
             - Saves data to table of events
